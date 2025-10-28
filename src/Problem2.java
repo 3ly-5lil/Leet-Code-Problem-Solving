@@ -7,31 +7,34 @@ class ListNode {
 }
 
 public class Problem2 {
-    String ListNodeToString(ListNode node) {
-        if(node.next != null) return ListNodeToString(node.next) + node.val;
+    public ListNode add(ListNode l1, ListNode l2, boolean hasCarry) {
+        ListNode lNode = new ListNode();
+        boolean hasCarry2 = false;
 
-        return ""+node.val;
-    }
-    ListNode StringToListNode(String s) {
-        ListNode node = null;
+        int v = l1.val + l2.val + (hasCarry ? 1 : 0);
 
-        for (int i = 0; i < s.length(); i++) {
-            ListNode temp = new ListNode(Integer.parseInt("" + s.charAt(i)));
-
-            if (node != null)
-                temp.next = node;
-
-            node = temp;
+        if(v >= 10) {
+            hasCarry2 = true;
+            v -= 10;
         }
 
-        return node;
+        lNode.val = v;
+
+        if (l1.next == null && l2.next == null) {
+            if (hasCarry2) lNode.next = new ListNode(1);
+
+            return lNode;
+        }
+
+        lNode.next = add(
+                l1.next != null ? l1.next : new ListNode(0),
+                l2.next != null ? l2.next : new ListNode(0),
+                hasCarry2);
+
+        return lNode;
     }
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int a = Integer.parseInt(ListNodeToString(l1));
-        int b = Integer.parseInt(ListNodeToString(l2));
-
-        int v = a + b;
-
-        return StringToListNode(""+v);
+        return add(l1, l2, false);
     }
 }
