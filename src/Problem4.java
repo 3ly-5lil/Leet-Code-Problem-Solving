@@ -1,25 +1,38 @@
 public class Problem4 {
-    static public double findMedianSortedArray(int[] nums) {
-        if (nums.length == 0) return 0;
+    static public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        // it will be the middle element if the length of the merged array is odd,
+        // if it's even then it will be the average of the two elements at the mid
 
-        // if the array has odd number of elements then the element at the middle is the median
-        // else it's the average of the two middle elements
-        if (nums.length % 2 == 0) {
-            // if it's even find the element at (half) & (half - 1) and get there median
-            int half = nums.length / 2;
-            return (double) (nums[half] + nums[half - 1]) / 2;
+        double indexOfTheMiddle = (double) (nums1.length + nums2.length) / 2;
+
+        int i = 0, i1 = 0, i2 = 0, middle = 0, preMiddle = 0;
+
+        while (i <= indexOfTheMiddle) {
+            preMiddle = middle;
+
+            int curr1, curr2;
+
+            if (i1 < nums1.length) curr1 = nums1[i1];
+            else curr1 = Integer.MAX_VALUE;
+
+            if (i2 < nums2.length) curr2 = nums2[i2];
+            else curr2 = Integer.MAX_VALUE;
+
+            if (curr1 < curr2) {
+                middle = curr1;
+                i1++;
+            }
+            else {
+                middle = curr2;
+                i2++;
+            }
+
+            i++;
         }
 
-        int half = nums.length / 2;
-        return nums[half];
-
-    }
-    static public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-
-        if (nums1.length == 0) return findMedianSortedArray(nums2);
-        if (nums2.length == 0) return findMedianSortedArray(nums1);
-
-        return (findMedianSortedArray(nums1) + findMedianSortedArray(nums2)) / 2;
+        return indexOfTheMiddle % 1 == 0 ?
+                (double) (middle + preMiddle) / 2
+                : middle;
     }
 
     public static void main(String[] args) {
