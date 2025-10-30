@@ -11,6 +11,7 @@ class Problem3 {
 
 
             if (uniques.containsKey(c)) {
+                max = Math.max(max, uniques.size());
                 Set<Character> keySet = new HashSet<>(uniques.keySet());
 
                 keySet.forEach((k) -> {
@@ -19,8 +20,9 @@ class Problem3 {
             }
 
             uniques.put(c, i);
-            max = Math.max(max, uniques.size());
         }
+
+        max = Math.max(max, uniques.size());
 
         return max;
     }
