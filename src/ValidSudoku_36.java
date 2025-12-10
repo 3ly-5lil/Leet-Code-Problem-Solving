@@ -8,7 +8,7 @@ public class ValidSudoku_36 {
 
         public boolean isValidSudoku0(char[][] board) {
             Set<String> seen = new HashSet<>();
-
+            
             for (int i = 0; i < 9; i++) {
 
                 for (int j = 0; j < 9; j++) {
