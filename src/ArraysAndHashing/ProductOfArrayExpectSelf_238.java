@@ -1,3 +1,5 @@
+package ArraysAndHashing;
+
 import java.util.Arrays;
 
 public class ProductOfArrayExpectSelf_238 {

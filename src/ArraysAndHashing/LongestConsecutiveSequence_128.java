@@ -1,3 +1,5 @@
+package ArraysAndHashing;
+
 import java.util.Arrays;
 
 class LongestConsecutiveSequence_128 {

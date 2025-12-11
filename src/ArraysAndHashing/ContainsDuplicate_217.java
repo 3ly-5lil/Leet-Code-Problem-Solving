@@ -1,3 +1,5 @@
+package ArraysAndHashing;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,10 +9,10 @@ public class ContainsDuplicate_217 {
         // Speed O(n)
         // Space O(n)
         public boolean containsDuplicate(int[] nums) {
-            Set<Integer> uniquesSet = new HashSet<> (nums.length);
+            Set<Integer> uniquesSet = new HashSet<>(nums.length);
 
             for (int x : nums) {
-                if(uniquesSet.contains(x)) return true;
+                if (uniquesSet.contains(x)) return true;
                 uniquesSet.add(x);
             }
 
